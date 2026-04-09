@@ -29,41 +29,44 @@ const { Content } = await render(recipe);
       <a href="../">All recipes</a>
     </p>
 
-    <header class="recipe-hero">
-      <div class="recipe-hero__content">
-        <p class="recipe-kicker">Monsieur Didier's coastal table</p>
-        <h1 id="recipe-title">{recipe.data.title}</h1>
-        <p class="recipe-description">{recipe.data.description}</p>
-      </div>
-
-      <dl class="recipe-metadata" aria-label="Recipe details">
-        <div class="meta-chip meta-chip--prep">
-          <dt>Prep</dt>
-          <dd>{recipe.data.prepTime}</dd>
-        </div>
-        <div class="meta-chip meta-chip--cook">
-          <dt>Cook</dt>
-          <dd>{recipe.data.cookTime}</dd>
-        </div>
-        <div class="meta-chip meta-chip--serves">
-          <dt>Serves</dt>
-          <dd>{recipe.data.servings}</dd>
-        </div>
-        <div class="meta-chip meta-chip--region">
-          <dt>Region</dt>
-          <dd>{recipe.data.region}</dd>
-        </div>
-      </dl>
-
-      <ul class="recipe-tags" aria-label="Recipe tags">
-        {recipe.data.tags.map((tag) => (
-          <li>{tag}</li>
-        ))}
-      </ul>
+    <header class="recipe-intro">
+      <p class="recipe-kicker">Monsieur Didier's coastal table</p>
+      <h1 id="recipe-title">{recipe.data.title}</h1>
+      <p class="recipe-description">{recipe.data.description}</p>
     </header>
 
-    <section class="recipe-content" aria-label="Recipe instructions and notes">
-      <Content />
-    </section>
+    <div class="recipe-layout">
+      <aside class="recipe-summary" aria-label="Recipe details and tags">
+        <h2>At a glance</h2>
+        <dl class="recipe-metadata" aria-label="Recipe details">
+          <div class="meta-chip meta-chip--prep">
+            <dt>Prep</dt>
+            <dd>{recipe.data.prepTime}</dd>
+          </div>
+          <div class="meta-chip meta-chip--cook">
+            <dt>Cook</dt>
+            <dd>{recipe.data.cookTime}</dd>
+          </div>
+          <div class="meta-chip meta-chip--serves">
+            <dt>Serves</dt>
+            <dd>{recipe.data.servings}</dd>
+          </div>
+          <div class="meta-chip meta-chip--region">
+            <dt>Region</dt>
+            <dd>{recipe.data.region}</dd>
+          </div>
+        </dl>
+
+        <ul class="recipe-tags" aria-label="Recipe tags">
+          {recipe.data.tags.map((tag) => (
+            <li>{tag}</li>
+          ))}
+        </ul>
+      </aside>
+
+      <section class="recipe-content" aria-label="Recipe instructions and notes">
+        <Content />
+      </section>
+    </div>
   </article>
 </MainLayout>
