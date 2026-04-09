@@ -2,6 +2,6 @@
 import { defineConfig } from 'astro/config';
 
 // https://astro.build/config
-export default defineConfig({
-	base: '/wave-vent-cookbook',
-});
+export default defineConfig(({ command }) => ({
+	base: command === 'build' ? '/wave-vent-cookbook' : '/',
+}));

@@ -164,6 +164,7 @@ main {
 }
 
 .recipe-card {
+  display: block;
   background: #fff;
   border-radius: 0.95rem;
   border: 1px solid rgb(16 35 63 / 9%);
@@ -175,6 +176,11 @@ main {
 .recipe-card:hover {
   transform: translateY(-2px);
   box-shadow: 0 12px 22px rgb(16 35 63 / 10%);
+}
+
+.recipe-card--link:focus-visible {
+  outline: 2px solid var(--sea-500);
+  outline-offset: 2px;
 }
 
 .recipe-card__stripe {

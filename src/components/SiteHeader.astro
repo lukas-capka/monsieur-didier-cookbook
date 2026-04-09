@@ -1,10 +1,14 @@
+---
+import { base } from "astro:config/server";
+---
+
 <header class="site-header">
   <div class="container site-header__inner">
-    <a class="brand" href="/">
+    <a class="brand" href={base}>
       Wave<span>&</span>Vent
     </a>
     <nav class="site-nav" aria-label="Primary navigation">
-      <a href="#recipes">Recipes</a>
+      <a href={`${base}recipes/`}>Recipes</a>
       <a href="#about">Coastline story</a>
       <a href="#contact">Contact</a>
     </nav>

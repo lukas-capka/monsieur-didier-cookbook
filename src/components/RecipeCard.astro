@@ -4,16 +4,30 @@ interface Props {
   description: string;
   duration: string;
   origin: string;
+  href?: string;
 }
 
-const { title, description, duration, origin } = Astro.props;
+const { title, description, duration, origin, href } = Astro.props;
 ---
 
-<article class="recipe-card">
-  <div class="recipe-card__stripe" aria-hidden="true"></div>
-  <div class="recipe-card__body">
-    <h3>{title}</h3>
-    <p class="recipe-meta">{origin} · {duration}</p>
-    <p>{description}</p>
-  </div>
-</article>
+{
+  href ? (
+    <a class="recipe-card recipe-card--link" href={href}>
+      <div class="recipe-card__stripe" aria-hidden="true"></div>
+      <div class="recipe-card__body">
+        <h3>{title}</h3>
+        <p class="recipe-meta">{origin} · {duration}</p>
+        <p>{description}</p>
+      </div>
+    </a>
+  ) : (
+    <article class="recipe-card">
+      <div class="recipe-card__stripe" aria-hidden="true"></div>
+      <div class="recipe-card__body">
+        <h3>{title}</h3>
+        <p class="recipe-meta">{origin} · {duration}</p>
+        <p>{description}</p>
+      </div>
+    </article>
+  )
+}
