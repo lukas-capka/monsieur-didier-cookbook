@@ -11,8 +11,23 @@ import { base } from "astro:config/server";
       <p class="site-header__tagline">Brittany and west-France coastal recipes</p>
     </div>
     <nav class="site-nav" aria-label="Primary navigation">
-      <a href={`${base}recipes/`}>Recipes</a>
-      <a href={`${base}about-me/`}>About me</a>
+      <a class="site-nav__link" href={`${base}recipes/`}>Recipes</a>
+      <a class="site-nav__link" href={`${base}about-me/`}>About me</a>
     </nav>
   </div>
 </header>
+
+<style>
+  @media (max-width: 640px) {
+    .site-nav {
+      gap: 0.7rem;
+    }
+
+    .site-nav__link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 2.4rem;
+      padding: 0.12rem 0.3rem;
+    }
+  }
+</style>
