@@ -3,10 +3,14 @@ import MainLayout from "../layouts/MainLayout.astro";
 import HomeHero from "../components/HomeHero.astro";
 import RecipeCard from "../components/RecipeCard.astro";
 import { getCollection } from "astro:content";
+import { base } from "astro:config/server";
 
 const recipes = (await getCollection("recipes", ({ data }) => !data.draft)).sort((a, b) =>
   a.data.title.localeCompare(b.data.title),
 );
+const featuredRecipes = recipes.slice(0, 4);
+const withBase = (path: string) => `${base}${path.replace(/^\//, "")}`;
+const resolveHero = (hero: string) => (hero.startsWith("http") ? hero : withBase(hero));
 ---
 
 <MainLayout
@@ -21,16 +25,25 @@ const recipes = (await getCollection("recipes", ({ data }) => !data.draft)).sort
     <h2 class="section-title" id="recipes-title">Featured recipes</h2>
     <div class="recipe-grid">
       {
-        recipes.map((recipe) => (
+        featuredRecipes.map((recipe) => (
           <RecipeCard
             href={`recipes/${recipe.id}/`}
             title={recipe.data.title}
             description={recipe.data.description}
             duration={`${recipe.data.prepTime} prep · ${recipe.data.cookTime} cook`}
             origin={recipe.data.region}
+            hero={resolveHero(recipe.data.hero)}
+            heroAlt={`${recipe.data.title} illustration`}
           />
         ))
       }
     </div>
+    {
+      recipes.length > featuredRecipes.length && (
+        <p class="recipes-explore">
+          <a href={withBase("/recipes/")}>Explore all recipes ({recipes.length})</a>
+        </p>
+      )
+    }
   </section>
 </MainLayout>
