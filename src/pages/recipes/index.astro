@@ -1,5 +1,6 @@
 ---
 import MainLayout from "../../layouts/MainLayout.astro";
+import RecipeCard from "../../components/RecipeCard.astro";
 import { getCollection } from "astro:content";
 
 const recipes = (await getCollection("recipes", ({ data }) => !data.draft)).sort((a, b) =>
@@ -11,33 +12,21 @@ const recipes = (await getCollection("recipes", ({ data }) => !data.draft)).sort
   title="Recipes | Monsieur Didier"
   description="Browse Monsieur Didier's coastal French recipes from Brittany and nearby Atlantic ports."
 >
-  <section aria-labelledby="recipes-page-title">
+  <section class="recipes-page" aria-labelledby="recipes-page-title">
     <h1 id="recipes-page-title">Monsieur Didier Recipes</h1>
-    <p>Traditional dishes from Brittany and nearby Atlantic ports.</p>
-    <ul>
+    <p class="recipes-page__intro">Traditional dishes from Brittany and nearby Atlantic ports.</p>
+    <div class="recipe-grid">
       {
         recipes.map((recipe) => (
-          <li>
-            <article>
-              <h2>
-                <a href={`${recipe.id}/`}>{recipe.data.title}</a>
-              </h2>
-              <p>{recipe.data.description}</p>
-              <p>
-                <strong>Region:</strong> {recipe.data.region}
-              </p>
-              <p>
-                <strong>Prep:</strong> {recipe.data.prepTime} |{" "}
-                <strong>Cook:</strong> {recipe.data.cookTime} |{" "}
-                <strong>Serves:</strong> {recipe.data.servings}
-              </p>
-              <p>
-                <strong>Tags:</strong> {recipe.data.tags.join(", ")}
-              </p>
-            </article>
-          </li>
+          <RecipeCard
+            href={`${recipe.id}/`}
+            title={recipe.data.title}
+            description={recipe.data.description}
+            duration={`${recipe.data.prepTime} prep · ${recipe.data.cookTime} cook`}
+            origin={recipe.data.region}
+          />
         ))
       }
-    </ul>
+    </div>
   </section>
 </MainLayout>

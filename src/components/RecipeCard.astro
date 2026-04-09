@@ -18,6 +18,7 @@ const { title, description, duration, origin, href } = Astro.props;
         <h3>{title}</h3>
         <p class="recipe-meta">{origin} · {duration}</p>
         <p>{description}</p>
+        <p class="recipe-card__footer">View recipe</p>
       </div>
     </a>
   ) : (
@@ -27,6 +28,7 @@ const { title, description, duration, origin, href } = Astro.props;
         <h3>{title}</h3>
         <p class="recipe-meta">{origin} · {duration}</p>
         <p>{description}</p>
+        <p class="recipe-card__footer">Recipe note</p>
       </div>
     </article>
   )

@@ -4,10 +4,14 @@ import { base } from "astro:config/server";
 
 <header class="site-header">
   <div class="container site-header__inner">
-    <a class="brand" href={base}>
-      Monsieur Didier
-    </a>
+    <div class="site-branding">
+      <a class="brand" href={base}>
+        <span>Monsieur</span> Didier
+      </a>
+      <p class="site-header__tagline">Brittany and west-France coastal recipes</p>
+    </div>
     <nav class="site-nav" aria-label="Primary navigation">
+      <a href={base}>Home</a>
       <a href={`${base}recipes/`}>Recipes</a>
       <a href={`${base}about-me/`}>About me</a>
     </nav>

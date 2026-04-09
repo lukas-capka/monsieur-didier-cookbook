@@ -17,6 +17,7 @@ concurrency:
 
 jobs:
   build:
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -43,6 +44,7 @@ jobs:
           path: ./dist
 
   deploy:
+    if: github.ref == 'refs/heads/main'
     needs: build
     runs-on: ubuntu-latest
     environment:

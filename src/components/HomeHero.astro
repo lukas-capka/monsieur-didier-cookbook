@@ -1,5 +1,10 @@
+---
+import { base } from "astro:config/server";
+---
+
 <section class="hero">
   <div class="hero__content">
+    <p class="hero__eyebrow">West-France coastal kitchen</p>
     <h1>Monsieur Didier's coastal kitchen.</h1>
     <p>
       Traditional French recipes from Brittany, written for calm home cooking
@@ -11,5 +16,6 @@
       <span>Farmer market veg</span>
       <span>Weeknight friendly</span>
     </div>
+    <a class="hero__cta" href={`${base}recipes/`}>Explore all recipes</a>
   </div>
 </section>

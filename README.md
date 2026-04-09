@@ -22,21 +22,21 @@ This repository deploys with GitHub Actions using `.github/workflows/deploy.yml`
 - Trigger: push to `main` (plus manual `workflow_dispatch`)
 - Build output: `dist/`
 - Deploy target: GitHub Pages
-- Base path in production: `/wave-vent-cookbook` (configured in `astro.config.mjs`)
+- Base path in production: `/monsieur-didier-cookbook/` (configured in `astro.config.mjs`)
 
 ### One-time GitHub setup
 
 1. Keep the repository public (GitHub Free requirement for Pages via Actions).
 2. In GitHub, open `Settings -> Pages`.
 3. Under source, select `GitHub Actions`.
-4. Ensure `main` is the active deployment branch for pushes.
+4. Run manual dispatches from `main` only; the workflow is hardened to deploy only when `github.ref` is `refs/heads/main`.
 
 ### Deploy flow
 
 1. Merge or push changes to `main`.
 2. GitHub Action builds Astro and deploys to Pages.
 3. Site is published at:
-   - `https://<github-username>.github.io/wave-vent-cookbook/`
+   - `https://<github-username>.github.io/monsieur-didier-cookbook/`
 
 ## Foundation notes
 
