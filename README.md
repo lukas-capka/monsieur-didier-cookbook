@@ -1,45 +1,7 @@
-# Monsieur Didier
+# Monsieur Didier Cookbook
 
-Astro site for Monsieur Didier's coastal French recipes, with a homepage, recipe listings, individual recipe pages, and a dedicated About Me page.
+French coastal recipes inspired by Brittany, family moments, and simple home cooking.
 
-## Local development
+[Visit the cookbook](https://lukas-capka.github.io/monsieur-didier-cookbook/)
 
-Run from the project root:
-
-| Command | Action |
-| :--- | :--- |
-| `npm install` | Install dependencies |
-| `npm run dev` | Start local server at `localhost:4321` |
-| `npm run build` | Build production output to `dist/` |
-| `npm run preview` | Preview production build |
-
-## GitHub Pages deployment (free-tier friendly)
-
-This repository deploys with GitHub Actions using `.github/workflows/deploy.yml`.
-
-### Current setup
-
-- Trigger: push to `main` (plus manual `workflow_dispatch`)
-- Build output: `dist/`
-- Deploy target: GitHub Pages
-- Base path in production: `/monsieur-didier-cookbook/` (configured in `astro.config.mjs`)
-
-### One-time GitHub setup
-
-1. Keep the repository public (GitHub Free requirement for Pages via Actions).
-2. In GitHub, open `Settings -> Pages`.
-3. Under source, select `GitHub Actions`.
-4. Run manual dispatches from `main` only; the workflow is hardened to deploy only when `github.ref` is `refs/heads/main`.
-
-### Deploy flow
-
-1. Merge or push changes to `main`.
-2. GitHub Action builds Astro and deploys to Pages.
-3. Site is published at:
-   - `https://<github-username>.github.io/monsieur-didier-cookbook/`
-
-## Foundation notes
-
-- Content is markdown-driven under `src/content/recipes/`.
-- About page content is in `src/pages/about-me.md`.
-- Keep route structure stable (`/recipes/`, `/recipes/[slug]/`, `/about-me/`) to avoid broken links in future iterations.
+From fresh seafood classics to everyday comfort dishes, this project shares the food Didier loves to cook and pass on.
