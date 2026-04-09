@@ -1,0 +1,48 @@
+---
+import { getCollection } from "astro:content";
+
+const recipes = (await getCollection("recipes", ({ data }) => !data.draft)).sort((a, b) =>
+  a.data.title.localeCompare(b.data.title),
+);
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content="French coastal and Brittany recipes." />
+    <title>Recipes | Wave Vent Cookbook</title>
+  </head>
+  <body>
+    <main>
+      <h1>French Coastal Recipes</h1>
+      <p>Traditional dishes from Brittany and nearby Atlantic ports.</p>
+      <ul>
+        {
+          recipes.map((recipe) => (
+            <li>
+              <article>
+                <h2>
+                  <a href={`/recipes/${recipe.id}/`}>{recipe.data.title}</a>
+                </h2>
+                <p>{recipe.data.description}</p>
+                <p>
+                  <strong>Region:</strong> {recipe.data.region}
+                </p>
+                <p>
+                  <strong>Prep:</strong> {recipe.data.prepTime} |{" "}
+                  <strong>Cook:</strong> {recipe.data.cookTime} |{" "}
+                  <strong>Serves:</strong> {recipe.data.servings}
+                </p>
+                <p>
+                  <strong>Tags:</strong> {recipe.data.tags.join(", ")}
+                </p>
+              </article>
+            </li>
+          ))
+        }
+      </ul>
+    </main>
+  </body>
+</html>

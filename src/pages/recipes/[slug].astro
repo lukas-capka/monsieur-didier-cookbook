@@ -1,0 +1,56 @@
+---
+import { getCollection, render, type CollectionEntry } from "astro:content";
+
+export async function getStaticPaths() {
+  const recipes = await getCollection("recipes", ({ data }) => !data.draft);
+
+  return recipes.map((recipe) => ({
+    params: { slug: recipe.id },
+    props: { recipe },
+  }));
+}
+
+type Props = {
+  recipe: CollectionEntry<"recipes">;
+};
+
+const { recipe } = Astro.props as Props;
+const { Content } = await render(recipe);
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={recipe.data.description} />
+    <title>{recipe.data.title} | Wave Vent Cookbook</title>
+  </head>
+  <body>
+    <main>
+      <p><a href="/recipes/">All recipes</a></p>
+      <article>
+        <header>
+          <h1>{recipe.data.title}</h1>
+          <p>{recipe.data.description}</p>
+          <p>
+            <strong>Region:</strong> {recipe.data.region}
+          </p>
+          <p>
+            <strong>Prep:</strong> {recipe.data.prepTime} |{" "}
+            <strong>Cook:</strong> {recipe.data.cookTime} |{" "}
+            <strong>Serves:</strong> {recipe.data.servings}
+          </p>
+          <p>
+            <strong>Hero:</strong> {recipe.data.hero}
+          </p>
+          <p>
+            <strong>Tags:</strong> {recipe.data.tags.join(", ")}
+          </p>
+        </header>
+
+        <Content />
+      </article>
+    </main>
+  </body>
+</html>

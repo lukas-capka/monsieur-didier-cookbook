@@ -1,0 +1,19 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  duration: string;
+  origin: string;
+}
+
+const { title, description, duration, origin } = Astro.props;
+---
+
+<article class="recipe-card">
+  <div class="recipe-card__stripe" aria-hidden="true"></div>
+  <div class="recipe-card__body">
+    <h3>{title}</h3>
+    <p class="recipe-meta">{origin} · {duration}</p>
+    <p>{description}</p>
+  </div>
+</article>

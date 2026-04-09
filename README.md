@@ -41,3 +41,13 @@ All commands are run from the root of the project, from a terminal:
 ## 👀 Want to learn more?
 
 Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+
+## Deploy to GitHub Pages
+
+This project includes a workflow at `.github/workflows/deploy.yml` that builds and deploys to GitHub Pages on pushes to `main`.
+
+For project pages under this repository name, Astro is configured with:
+
+- `base: '/wave-vent-cookbook'`
+
+In your GitHub repository settings, set **Pages** source to **GitHub Actions**.

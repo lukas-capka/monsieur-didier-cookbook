@@ -1,17 +1,47 @@
 ---
+import MainLayout from "../layouts/MainLayout.astro";
+import HomeHero from "../components/HomeHero.astro";
+import RecipeCard from "../components/RecipeCard.astro";
 
+const recipes = [
+  {
+    title: "Mussels in Cider Cream",
+    duration: "25 min",
+    origin: "Finistere",
+    description:
+      "Fresh mussels simmered with apple cider, shallots, and a spoonful of creme fraiche."
+  },
+  {
+    title: "Buckwheat Galette Complete",
+    duration: "35 min",
+    origin: "Quimper",
+    description:
+      "Crisp-edged galette folded around egg, Comte, and ham, served with green salad."
+  },
+  {
+    title: "Sea Bass with Herb Butter",
+    duration: "30 min",
+    origin: "Concarneau",
+    description:
+      "Pan-seared filets with parsley-lemon butter and roasted spring vegetables."
+  },
+  {
+    title: "Salted Caramel Rice Pudding",
+    duration: "40 min",
+    origin: "Morbihan",
+    description:
+      "Creamy vanilla rice pudding finished with a warm drizzle of house-made salted caramel."
+  }
+];
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<MainLayout title="Wave & Vent | Brittany Recipes">
+  <HomeHero />
+
+  <section id="recipes" aria-labelledby="recipes-title">
+    <h2 class="section-title" id="recipes-title">Featured shoreline recipes</h2>
+    <div class="recipe-grid">
+      {recipes.map((recipe) => <RecipeCard {...recipe} />)}
+    </div>
+  </section>
+</MainLayout>
