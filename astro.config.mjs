@@ -2,6 +2,6 @@
 import { defineConfig } from 'astro/config';
 
 // https://astro.build/config
-export default defineConfig(({ command }) => ({
-	base: command === 'build' ? '/monsieur-didier-cookbook/' : '/',
-}));
+export default defineConfig({
+	base: '/monsieur-didier-cookbook/',
+});
