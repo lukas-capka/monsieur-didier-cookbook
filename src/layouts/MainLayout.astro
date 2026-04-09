@@ -6,9 +6,15 @@ import "../styles/global.css";
 
 interface Props {
   title?: string;
+  description?: string;
+  mainClass?: string;
 }
 
-const { title = "Wave & Vent Cookbook" } = Astro.props;
+const {
+  title = "Monsieur Didier | Coastal Recipes",
+  description = "Monsieur Didier shares French coastal recipes inspired by Brittany.",
+  mainClass,
+} = Astro.props;
 ---
 
 <!doctype html>
@@ -19,12 +25,13 @@ const { title = "Wave & Vent Cookbook" } = Astro.props;
     <link rel="icon" href={`${base}favicon.ico`} />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
     <title>{title}</title>
   </head>
   <body>
     <div class="site-shell">
       <SiteHeader />
-      <main>
+      <main class={mainClass}>
         <div class="container">
           <slot />
         </div>

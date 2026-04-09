@@ -1,53 +1,45 @@
-# Astro Starter Kit: Minimal
+# Monsieur Didier
 
-```sh
-npm create astro@latest -- --template minimal
-```
+Astro site for Monsieur Didier's coastal French recipes, with a homepage, recipe listings, individual recipe pages, and a dedicated About Me page.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Local development
 
-## 🚀 Project Structure
+Run from the project root:
 
-Inside of your Astro project, you'll see the following folders and files:
+| Command | Action |
+| :--- | :--- |
+| `npm install` | Install dependencies |
+| `npm run dev` | Start local server at `localhost:4321` |
+| `npm run build` | Build production output to `dist/` |
+| `npm run preview` | Preview production build |
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+## GitHub Pages deployment (free-tier friendly)
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+This repository deploys with GitHub Actions using `.github/workflows/deploy.yml`.
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+### Current setup
 
-Any static assets, like images, can be placed in the `public/` directory.
+- Trigger: push to `main` (plus manual `workflow_dispatch`)
+- Build output: `dist/`
+- Deploy target: GitHub Pages
+- Base path in production: `/wave-vent-cookbook` (configured in `astro.config.mjs`)
 
-## 🧞 Commands
+### One-time GitHub setup
 
-All commands are run from the root of the project, from a terminal:
+1. Keep the repository public (GitHub Free requirement for Pages via Actions).
+2. In GitHub, open `Settings -> Pages`.
+3. Under source, select `GitHub Actions`.
+4. Ensure `main` is the active deployment branch for pushes.
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+### Deploy flow
 
-## 👀 Want to learn more?
+1. Merge or push changes to `main`.
+2. GitHub Action builds Astro and deploys to Pages.
+3. Site is published at:
+   - `https://<github-username>.github.io/wave-vent-cookbook/`
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+## Foundation notes
 
-## Deploy to GitHub Pages
-
-This project includes a workflow at `.github/workflows/deploy.yml` that builds and deploys to GitHub Pages on pushes to `main`.
-
-For project pages under this repository name, Astro is configured with:
-
-- `base: '/wave-vent-cookbook'`
-
-In your GitHub repository settings, set **Pages** source to **GitHub Actions**.
+- Content is markdown-driven under `src/content/recipes/`.
+- About page content is in `src/pages/about-me.md`.
+- Keep route structure stable (`/recipes/`, `/recipes/[slug]/`, `/about-me/`) to avoid broken links in future iterations.

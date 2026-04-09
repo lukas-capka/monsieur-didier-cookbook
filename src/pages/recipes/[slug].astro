@@ -1,5 +1,6 @@
 ---
 import { getCollection, render, type CollectionEntry } from "astro:content";
+import MainLayout from "../../layouts/MainLayout.astro";
 
 export async function getStaticPaths() {
   const recipes = await getCollection("recipes", ({ data }) => !data.draft);
@@ -18,39 +19,51 @@ const { recipe } = Astro.props as Props;
 const { Content } = await render(recipe);
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <meta name="description" content={recipe.data.description} />
-    <title>{recipe.data.title} | Wave Vent Cookbook</title>
-  </head>
-  <body>
-    <main>
-      <p><a href="../">All recipes</a></p>
-      <article>
-        <header>
-          <h1>{recipe.data.title}</h1>
-          <p>{recipe.data.description}</p>
-          <p>
-            <strong>Region:</strong> {recipe.data.region}
-          </p>
-          <p>
-            <strong>Prep:</strong> {recipe.data.prepTime} |{" "}
-            <strong>Cook:</strong> {recipe.data.cookTime} |{" "}
-            <strong>Serves:</strong> {recipe.data.servings}
-          </p>
-          <p>
-            <strong>Hero:</strong> {recipe.data.hero}
-          </p>
-          <p>
-            <strong>Tags:</strong> {recipe.data.tags.join(", ")}
-          </p>
-        </header>
+<MainLayout
+  title={`${recipe.data.title} | Wave Vent Cookbook`}
+  description={recipe.data.description}
+  mainClass="recipe-page"
+>
+  <article class="recipe-detail" aria-labelledby="recipe-title">
+    <p class="recipe-back-link">
+      <a href="../">All recipes</a>
+    </p>
 
-        <Content />
-      </article>
-    </main>
-  </body>
-</html>
+    <header class="recipe-hero">
+      <div class="recipe-hero__content">
+        <p class="recipe-kicker">Monsieur Didier's coastal table</p>
+        <h1 id="recipe-title">{recipe.data.title}</h1>
+        <p class="recipe-description">{recipe.data.description}</p>
+      </div>
+
+      <dl class="recipe-metadata" aria-label="Recipe details">
+        <div class="meta-chip meta-chip--prep">
+          <dt>Prep</dt>
+          <dd>{recipe.data.prepTime}</dd>
+        </div>
+        <div class="meta-chip meta-chip--cook">
+          <dt>Cook</dt>
+          <dd>{recipe.data.cookTime}</dd>
+        </div>
+        <div class="meta-chip meta-chip--serves">
+          <dt>Serves</dt>
+          <dd>{recipe.data.servings}</dd>
+        </div>
+        <div class="meta-chip meta-chip--region">
+          <dt>Region</dt>
+          <dd>{recipe.data.region}</dd>
+        </div>
+      </dl>
+
+      <ul class="recipe-tags" aria-label="Recipe tags">
+        {recipe.data.tags.map((tag) => (
+          <li>{tag}</li>
+        ))}
+      </ul>
+    </header>
+
+    <section class="recipe-content" aria-label="Recipe instructions and notes">
+      <Content />
+    </section>
+  </article>
+</MainLayout>

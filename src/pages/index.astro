@@ -9,11 +9,16 @@ const recipes = (await getCollection("recipes", ({ data }) => !data.draft)).sort
 );
 ---
 
-<MainLayout title="Wave & Vent | Brittany Recipes">
-  <HomeHero />
+<MainLayout
+  title="Monsieur Didier | Coastal Recipes"
+  description="A collection of coastal French recipes inspired by Brittany."
+>
+  <section id="intro" aria-label="Intro">
+    <HomeHero />
+  </section>
 
   <section id="recipes" aria-labelledby="recipes-title">
-    <h2 class="section-title" id="recipes-title">Featured shoreline recipes</h2>
+    <h2 class="section-title" id="recipes-title">Featured recipes</h2>
     <div class="recipe-grid">
       {
         recipes.map((recipe) => (
