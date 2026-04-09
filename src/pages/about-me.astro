@@ -1,0 +1,41 @@
+---
+import { base } from "astro:config/server";
+import MainLayout from "../layouts/MainLayout.astro";
+---
+
+<MainLayout
+  title="Monsieur Didier | About Me"
+  description="Learn about Didier, his family kitchen, and the story behind these coastal French recipes."
+>
+  <section class="about-page" aria-labelledby="about-title">
+    <div class="about-page__content">
+      <h1 id="about-title">About me</h1>
+      <p>
+        Bonjour, I am Didier, a French home cook who grew up between family
+        lunches, market mornings, and long evenings around one table.
+      </p>
+      <p>
+        This page is my way to share that joy with you. I love preparing simple
+        dishes that bring people together: seafood from the coast, vegetables
+        from the market, and recipes made to be cooked calmly at home.
+      </p>
+      <p>
+        My greatest inspiration is my family. Every recipe here carries a bit of
+        our story, and I hope it helps you create warm moments with the people
+        you love.
+      </p>
+      <p>
+        Thank you for cooking with me. If one of these dishes brings a smile to
+        your table, then this project has done its job.
+      </p>
+    </div>
+    <figure class="about-page__photo">
+      <img
+        src={`${base}images/about/didier-with-child.png`}
+        alt="Didier riding a bicycle with a child in a seat."
+        loading="lazy"
+        decoding="async"
+      />
+    </figure>
+  </section>
+</MainLayout>

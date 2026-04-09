@@ -29,10 +29,12 @@ const { Content } = await render(recipe);
       <a href="../">All recipes</a>
     </p>
 
-    <header class="recipe-intro">
-      <p class="recipe-kicker">Monsieur Didier's coastal table</p>
-      <h1 id="recipe-title">{recipe.data.title}</h1>
-      <p class="recipe-description">{recipe.data.description}</p>
+    <header class="hero recipe-top-hero">
+      <div class="hero__content">
+        <p class="hero__eyebrow">Monsieur Didier's coastal table</p>
+        <h1 id="recipe-title">{recipe.data.title}</h1>
+        <p>{recipe.data.description}</p>
+      </div>
     </header>
 
     <div class="recipe-layout">
@@ -65,7 +67,9 @@ const { Content } = await render(recipe);
       </aside>
 
       <section class="recipe-content" aria-label="Recipe instructions and notes">
-        <Content />
+        <div class="recipe-content__body">
+          <Content />
+        </div>
       </section>
     </div>
   </article>
